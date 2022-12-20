@@ -53,8 +53,8 @@
   (let ((keymap (make-sparse-keymap)))
     (define-key keymap (kbd "<right>") 'eshell-autosuggest-overlay-insert-all)
     (define-key keymap (kbd "C-f") 'eshell-autosuggest-overlay-insert-all)
-    (define-key keymap (kbd "M-<right>") 'eshell-autosuggest-overlay-insert-symbol)
-    (define-key keymap (kbd "M-f") 'eshell-autosuggest-overlay-insert-symbol)
+    (define-key keymap (kbd "M-<right>") 'eshell-autosuggest-overlay-insert-word)
+    (define-key keymap (kbd "M-f") 'eshell-autosuggest-overlay-insert-word)
     keymap)
   "Keymap that is enabled when overlay for eshell suggestions is displayed.")
 
@@ -71,16 +71,17 @@
   (when eshell-autosuggest-overlay--current-suggestion
     (insert eshell-autosuggest-overlay--current-suggestion)))
 
-(defun eshell-autosuggest-overlay-insert-symbol ()
-  "Insert first symbol of suggestion."
+(defun eshell-autosuggest-overlay-insert-word ()
+  "Insert first word of suggestion."
   (interactive)
   (when-let (suggestion eshell-autosuggest-overlay--current-suggestion)
-    (let* ((symbols (split-string suggestion))
-           (str (if (= (length symbols) 1)
+    (let* ((split-string-default-separators "[^[:alnum:]]+")
+           (words (split-string suggestion))
+           (str (if (= (length words) 1)
                     suggestion
                   (substring suggestion 0
-                             (+ (string-search (car symbols) suggestion)
-                                (length (car symbols)))))))
+                             (+ (string-search (car words) suggestion)
+                                (length (car words)))))))
       (insert str))))
 
 (defun eshell-autosuggest-overlay--display-ov ()

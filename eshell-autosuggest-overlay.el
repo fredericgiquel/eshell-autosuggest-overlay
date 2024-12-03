@@ -111,10 +111,10 @@
                         (point)))
            (end-cmd (point))
            (prefix (buffer-substring-no-properties begin-cmd end-cmd)))
-      (when (not (string-blank-p prefix))
+      (unless (string-blank-p prefix)
         (when-let* ((candidate (eshell-autosuggest-overlay--candidate prefix)))
           (let ((suggestion (substring candidate (length prefix))))
-            (when (not (string-blank-p suggestion))
+            (unless (string-blank-p suggestion)
               (setq eshell-autosuggest-overlay--current-suggestion (substring-no-properties suggestion))
               (eshell-autosuggest-overlay--display-ov))))))))
 

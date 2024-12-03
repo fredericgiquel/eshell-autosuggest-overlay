@@ -104,7 +104,8 @@
 
 (defun eshell-autosuggest-overlay--post-command ()
   "Search for a suggestion in history and display it."
-  (when (equal (point) (point-max))
+  (when (and (not completion-in-region-mode)
+             (equal (point) (point-max)))
     (let* ((begin-cmd (save-excursion
                         (eshell-bol)
                         (point)))

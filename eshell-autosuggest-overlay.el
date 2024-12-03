@@ -74,7 +74,7 @@
 (defun eshell-autosuggest-overlay-insert-word ()
   "Insert first word of suggestion."
   (interactive)
-  (when-let (suggestion eshell-autosuggest-overlay--current-suggestion)
+  (when-let* ((suggestion eshell-autosuggest-overlay--current-suggestion))
     (let* ((split-string-default-separators "[^[:alnum:]]+")
            (words (split-string suggestion))
            (str (if (= (length words) 1)
@@ -112,7 +112,7 @@
            (end-cmd (point))
            (prefix (buffer-substring-no-properties begin-cmd end-cmd)))
       (when (not (string-blank-p prefix))
-        (when-let (candidate (eshell-autosuggest-overlay--candidate prefix))
+        (when-let* ((candidate (eshell-autosuggest-overlay--candidate prefix)))
           (let ((suggestion (substring candidate (length prefix))))
             (when (not (string-blank-p suggestion))
               (setq eshell-autosuggest-overlay--current-suggestion (substring-no-properties suggestion))

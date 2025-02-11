@@ -1,12 +1,12 @@
 ;;; eshell-autosuggest-overlay.el --- History autosuggestions for eshell -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2024 Frédéric Giquel
+;; Copyright (C) 2022-2025 Frédéric Giquel
 ;; Author: Frédéric Giquel <frederic.giquel@laposte.net>
 ;; URL: http://github.com/fredericgiquel/eshell-autosuggest-overlay
 ;; Git-Repository: git://github.com/fredericgiquel/eshell-autosuggest-overlay.git
 ;; Created: 2022-12-18
 ;; Version: 0.2
-;; Package-Requires: (emacs "27.1")
+;; Package-Requires: ((emacs "27.1"))
 
 ;; This file is not part of GNU Emacs.
 
